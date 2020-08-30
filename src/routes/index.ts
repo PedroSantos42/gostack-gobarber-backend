@@ -10,7 +10,7 @@ routes.use('/users', usersRouter);
 routes.use('/sessions', sessionsRouter);
 
 routes.get('/healthcheck', (request, response) => {
-    return response.json({ uptime: process.uptime() });
+  return response.json({ uptime: process.uptime() });
 });
 
 export default routes;
