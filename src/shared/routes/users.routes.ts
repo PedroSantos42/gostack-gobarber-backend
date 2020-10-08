@@ -15,16 +15,15 @@ usersRouter.post('/', async (request, response) => {
   const { name, email, password } = request.body;
 
   const createUser = new CreateUserService();
-
   const user = await createUser.execute({
     name,
     email,
     password,
   });
 
-  delete user.password;
+  const mappedUser = user.toDTO(user);
 
-  return response.status(201).json(user);
+  return response.status(201).json(mappedUser);
 });
 
 usersRouter.patch(
@@ -39,9 +38,9 @@ usersRouter.patch(
       avatarFilename: request.file.filename,
     });
 
-    delete user.password;
+    const mappedUser = user.toDTO(user);
 
-    return response.json({ user });
+    return response.json({ mappedUser });
   },
 );
 

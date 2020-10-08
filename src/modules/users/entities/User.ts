@@ -18,7 +18,7 @@ class User {
   email: string;
 
   @Column()
-  password?: string;
+  password: string;
 
   @Column()
   avatar: string;
@@ -28,6 +28,17 @@ class User {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  toDTO(user: User): Omit<User, 'password'> {
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      avatar: user.avatar,
+      created_at: user.created_at,
+      updated_at: user.updated_at,
+    } as User;
+  }
 }
 
 export default User;
