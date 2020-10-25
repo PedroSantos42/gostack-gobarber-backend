@@ -1,4 +1,5 @@
 import AppError from '@shared/errors/AppError';
+
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import FakeUserTokensRepository from '../repositories/fakes/FakeUserTokensRepository';
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
@@ -77,11 +78,7 @@ describe('SendForgotPasswordEmail', () => {
 
     jest.spyOn(Date, 'now').mockImplementationOnce(() => {
       const customDate = new Date();
-
       return customDate.setHours(customDate.getHours() + 3);
-
-      // customDate.setHours(customDate.getHours() + 2);
-      // customDate.setMinutes(customDate.getMinutes() + 1);
     });
 
     await expect(
