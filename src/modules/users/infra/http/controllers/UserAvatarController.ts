@@ -19,8 +19,6 @@ export default class UserAvatarController {
       avatarFilename: request.file.filename,
     });
 
-    const mappedUser = user.toDTO(user);
-
-    return response.json({ mappedUser });
+    return response.json(user.toDTO(user));
   }
 }
