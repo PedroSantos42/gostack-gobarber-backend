@@ -12,6 +12,13 @@ services:
       POSTGRES_DB: gostack_gobarber
     container_name: gb-data
 
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    container_name: gb-mongo
+
   adminer:
     image: adminer
     restart: always
