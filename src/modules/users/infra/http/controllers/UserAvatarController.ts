@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { classToClass } from 'class-transformer';
 
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 import DiskStorageProvider from '@shared/container/providers/StorageProvider/implementations/DiskStorageProvider';
@@ -19,6 +20,6 @@ export default class UserAvatarController {
       avatarFilename: request.file.filename,
     });
 
-    return response.json(user.toDTO(user));
+    return response.json({ user: classToClass(user) });
   }
 }

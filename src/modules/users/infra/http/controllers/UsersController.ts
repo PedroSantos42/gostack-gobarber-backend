@@ -18,8 +18,6 @@ export default class UsersController {
       password,
     });
 
-    const mappedUser = user.toDTO(user);
-
-    return response.status(201).json(mappedUser);
+    return response.status(201).json(user);
   }
 }

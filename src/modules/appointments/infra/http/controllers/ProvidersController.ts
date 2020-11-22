@@ -11,8 +11,6 @@ export default class ProvidersController {
 
     const providers = await listProviders.execute({ user_id });
 
-    const mappedProviders = providers.map(provider => provider.toDTO(provider));
-
-    return response.status(201).json(mappedProviders);
+    return response.status(201).json(providers);
   }
 }
