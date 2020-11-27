@@ -2,6 +2,7 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
+import { classToClass } from 'class-transformer';
 import IUsersRepository from '../repositories/IUsersRepository';
 
 import User from '../infra/typeorm/entities/User';
@@ -24,7 +25,7 @@ class ShowProfileService {
       throw new AppError('User not found');
     }
 
-    return user;
+    return classToClass(user);
   }
 }
 

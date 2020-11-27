@@ -3,6 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
 import User from '@modules/users/infra/typeorm/entities/User';
+import { classToClass } from 'class-transformer';
 
 interface IRequest {
   user_id: string;
@@ -20,7 +21,7 @@ class ListProvidersService {
       except_user_id: user_id,
     });
 
-    return users;
+    return users.map(user => classToClass(user));
   }
 }
 
