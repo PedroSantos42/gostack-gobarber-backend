@@ -19,6 +19,13 @@ services:
       - 27017:27017
     container_name: gb-mongo
 
+  redis:
+    image: redis:6.0.9-alpine
+    command: redis-server
+    ports:
+      - 6379:6379
+    container_name: gb-cache
+
   adminer:
     image: adminer
     restart: always
