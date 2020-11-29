@@ -5,7 +5,7 @@ import crypto from 'crypto';
 const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 const uploadsFolder = path.resolve(__dirname, '..', '..', 'tmp', 'uploads');
 
-interface IUploadConfig {
+interface IStorageConfig {
   driver: 's3' | 'disk';
 
   tmpFolder: string;
@@ -51,4 +51,4 @@ export default {
       bucket: 'app-gobarber-42',
     },
   },
-} as IUploadConfig;
+} as IStorageConfig;

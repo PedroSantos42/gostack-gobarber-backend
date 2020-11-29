@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import uploadConfig from '@config/upload';
+import storageConfig from '@config/storage';
 
 import { Exclude, Expose } from 'class-transformer';
 
@@ -40,12 +40,12 @@ class User {
       return null;
     }
 
-    switch (uploadConfig.driver) {
+    switch (storageConfig.driver) {
       case 'disk':
         return `${process.env.APP_API_URL}/files/${this.avatar}`;
 
       case 's3':
-        return `https://${uploadConfig.config.aws.bucket}.s3.amazonaws.com/${this.avatar}`;
+        return `https://${storageConfig.config.aws.bucket}.s3.amazonaws.com/${this.avatar}`;
 
       default:
         return null;
