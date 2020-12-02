@@ -21,6 +21,7 @@ services:
 
   redis:
     image: redis:6.0.9-alpine
+    restart: always
     command: redis-server
     ports:
       - 6379:6379
