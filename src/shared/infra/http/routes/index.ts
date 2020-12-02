@@ -16,8 +16,18 @@ routes.use('/sessions', sessionsRouter);
 routes.use('/password', passwordRouter);
 routes.use('/profile', profileRouter);
 
+function calculateUptime(uptime: number): string {
+  const seconds = Math.floor(uptime);
+  const hours = Math.floor(seconds / 60);
+  const minutes = Math.floor(hours / 60);
+
+  return `${hours}h ${minutes}min ${seconds}s`;
+}
+
 routes.get('/healthcheck', (request, response) => {
-  return response.json({ uptime: process.uptime() });
+  return response.json({
+    uptime: calculateUptime(process.uptime()),
+  });
 });
 
 export default routes;
