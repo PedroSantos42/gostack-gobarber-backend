@@ -34,10 +34,37 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: ".,!node_modules"
           target: "~/app/gostack-gobarber-backend"
-          
-        # substituir o código existente pelo novo código
-        # acessar servidor e instalar dependências
-        # executar as migrações de banco de dados
-        # restart do servidor Node.js
-          
-          
+        
+      # instalar dependências no servidor
+      - name: Install dependencies on Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ~/app/gostack-gobarber-backend
+            yarn
+        
+      # executar as migrações de banco de dados
+      - name: Run Migrations on Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ~/app/gostack-gobarber-backend
+            ./node_modules/.bin/typeorm migration:run
+      
+      # restart do servidor Node.js
+      - name: Run Migrations on Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: pm2 restart gobarber-api
