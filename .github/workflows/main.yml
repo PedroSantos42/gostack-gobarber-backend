@@ -33,7 +33,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           source: "dist"
-          target: "teste"
+          target: "test"
           
         # substituir o código existente pelo novo código
         # acessar servidor e instalar dependências
