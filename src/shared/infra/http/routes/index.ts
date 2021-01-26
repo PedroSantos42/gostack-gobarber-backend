@@ -18,10 +18,10 @@ routes.use('/profile', profileRouter);
 
 function calculateUptime(uptime: number): string {
   const seconds = Math.floor(uptime);
-  const hours = Math.floor(seconds / 60);
-  const minutes = Math.floor(hours / 60);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
 
-  return `${hours}h ${minutes}min ${seconds}s`;
+  return `${hours}h ${minutes}min ${seconds > 60 ? seconds % 60 : seconds}s`;
 }
 
 routes.get('/healthcheck', (request, response) => {
